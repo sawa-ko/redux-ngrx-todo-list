@@ -2,7 +2,7 @@ import { Component, OnInit, Input, ElementRef, ViewChild } from '@angular/core';
 import { Todo } from '../models/todo.model';
 import { FormControl, Validators } from '@angular/forms';
 import { AppState } from 'src/app/app.reducers';
-import { ToggleTodoAction } from '../todo.actions';
+import { ToggleTodoAction, EditarTodoAction, EliminarTodoAction } from '../todo.actions';
 import { Store } from '@ngrx/store';
 
 @Component({
@@ -23,7 +23,7 @@ export class TodoItemComponent implements OnInit {
   ngOnInit(): void {
     this.checkFill = new FormControl(this.todo.completado);
     this.txtInput = new FormControl(this.todo.texto, Validators.required);
-    this.checkFill.valueChanges.subscribe((valor: any) => {
+    this.checkFill.valueChanges.subscribe(() => {
       const actionMarcar = new ToggleTodoAction(this.todo.id);
       this.store.dispatch(actionMarcar);
     })
@@ -36,7 +36,21 @@ export class TodoItemComponent implements OnInit {
     }, 100);
   }
 
-  public terminarEdicion() {
-    this.editando = false;
+  public guardarEdicion() {
+    if (this.txtInput.invalid) {
+      return this.editando = false;
+    }
+
+    if (this.txtInput.value === this.todo.texto) {
+      return this.editando = false;
+    }
+
+    const actionEditar = new EditarTodoAction(this.todo.id, this.txtInput.value);
+    this.store.dispatch(actionEditar);
+  }
+
+  public eliminarTodo() {
+    const actionEliminar = new EliminarTodoAction(this.todo.id);
+    this.store.dispatch(actionEliminar);
   }
 }

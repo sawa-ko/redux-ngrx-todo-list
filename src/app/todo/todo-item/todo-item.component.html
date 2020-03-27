@@ -2,7 +2,8 @@
     <div class=" view">
         <input class="toggle" type="checkbox" [formControl]="checkFill" [checked]="todo.completado">
         <label (dblclick)="editar()">{{ todo.texto }}</label>
-        <button class="destroy"></button>
+        <button class="destroy" (click)="eliminarTodo()"></button>
     </div>
-    <input class="edit" [formControl]="txtInput" (blur)="terminarEdicion()" #txtinputFisico>
+    <input class="edit" [formControl]="txtInput" (blur)="editando = false" (keyup.enter)="guardarEdicion()"
+        #txtinputFisico>
 </li>
