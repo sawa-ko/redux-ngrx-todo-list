@@ -32,6 +32,13 @@ export function todoReducer(state = estadoInicial, action: fromTodoActions.Accio
             });
         case fromTodoActions.ELIMINAR_TODO:
             return state.filter(todoEdit => todoEdit.id !== action.id);
+        case fromTodoActions.MARCAR_ALL_TODO:
+            return state.map(todoEdit => {
+                return {
+                    ...todoEdit,
+                    completado: action.completado
+                }
+            });
         default:
             return state;
     }

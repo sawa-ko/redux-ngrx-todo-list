@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { AppState } from '../app.reducers';
+import { MarcarTodoAction } from './todo.actions';
 
 @Component({
   selector: 'app-todo',
@@ -7,9 +10,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TodoComponent implements OnInit {
 
-  constructor() { }
+  public completado: boolean;
+
+  constructor(private store: Store<AppState>) { }
 
   ngOnInit(): void {
   }
 
+  public toggleAll() {
+    this.completado = !this.completado;
+    const marcarAllTodo = new MarcarTodoAction(this.completado);
+    this.store.dispatch(marcarAllTodo);
+  }
 }

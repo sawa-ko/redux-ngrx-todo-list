@@ -2,7 +2,7 @@
     <app-todo-add></app-todo-add>
     <section class="main">
         <input id="toggle-all" class="toggle-all" type="checkbox">
-        <label for="toggle-all">Marcar todo como completo</label>
+        <label (click)="toggleAll()" for="toggle-all">Marcar todo como completo</label>
         <app-todos-list></app-todos-list>
     </section>
     <app-todo-footer></app-todo-footer>

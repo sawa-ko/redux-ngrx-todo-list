@@ -5,7 +5,7 @@ import { environment } from '../environments/environment';
 
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { todoReducer } from './todo/todo.reducer';
+import { reducers } from './app.reducers';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -29,7 +29,7 @@ import { TodoAddComponent } from './todo/todo-add/todo-add.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    StoreModule.forRoot({ todos: todoReducer }),
+    StoreModule.forRoot(reducers),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
       logOnly: environment.production,
@@ -41,4 +41,4 @@ import { TodoAddComponent } from './todo/todo-add/todo-add.component';
   bootstrap: [AppComponent]
 })
 export class AppModule { }
-// PARTE 7
+// PARTE 8
