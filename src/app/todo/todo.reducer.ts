@@ -1,17 +1,24 @@
 import * as fromTodoActions from './todo.actions'
 import { Todo } from './models/todo.model';
 
-const todo1 = new Todo('Vencer a Thanos.');
-const todo2 = new Todo('Salvar al mundo.');
-const todo3 = new Todo('Pedir prestado traje de Iron Man.');
-
-const estadoInicial: Todo[] = [todo1, todo2, todo3];
+const estadoInicial: Todo[] = [];
 
 export function todoReducer(state = estadoInicial, action: fromTodoActions.Acciones): Todo[] {
     switch (action.type) {
         case fromTodoActions.AGREGAR_TODO:
             const todo = new Todo(action.texto);
             return [...state, todo];
+        case fromTodoActions.TOGGLE_TODO:
+            return state.map(todoEdit => {
+                if (todoEdit.id === action.id) {
+                    return {
+                        ...todoEdit,
+                        completado: !todoEdit.completado
+                    }
+                } else {
+                    return todoEdit;
+                }
+            });
         default:
             return state;
     }

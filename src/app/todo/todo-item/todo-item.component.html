@@ -1,8 +1,8 @@
-<li class="completed">
-    <div class="view">
-        <input class="toggle" type="checkbox" checked>
-        <label>Taste JavaScript</label>
+<li [ngClass]="{'completed': todo.completado, 'editing': editando}">
+    <div class=" view">
+        <input class="toggle" type="checkbox" [formControl]="checkFill" [checked]="todo.completado">
+        <label (dblclick)="editar()">{{ todo.texto }}</label>
         <button class="destroy"></button>
     </div>
-    <input class="edit" value="Crea una plantilla de TodoMVC">
+    <input class="edit" [formControl]="txtInput" (blur)="terminarEdicion()" #txtinputFisico>
 </li>
