@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { environment } from '../environments/environment';
 
 import { StoreModule } from '@ngrx/store';
@@ -33,6 +34,8 @@ import { TodoAddComponent } from './todo/todo-add/todo-add.component';
       maxAge: 25,
       logOnly: environment.production,
     }),
+    ReactiveFormsModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

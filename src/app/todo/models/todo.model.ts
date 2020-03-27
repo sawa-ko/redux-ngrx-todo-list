@@ -6,7 +6,7 @@ export class Todo {
     public completado: boolean;
 
     constructor(texto: string) {
-        this.texto = texto.charAt(0).toUpperCase() + this.texto.slice(1);
+        this.texto = texto.charAt(0).toUpperCase() + texto.slice(1);
         this.completado = false;
         this.id = Math.random();
     }
