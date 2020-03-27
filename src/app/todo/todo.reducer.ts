@@ -39,6 +39,8 @@ export function todoReducer(state = estadoInicial, action: fromTodoActions.Accio
                     completado: action.completado
                 }
             });
+        case fromTodoActions.ELIMINAR_ALL_TODO_COMPLETE:
+            return state.filter(todo => !todo.completado);
         default:
             return state;
     }
