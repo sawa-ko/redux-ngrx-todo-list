@@ -3,8 +3,9 @@ import { Todo } from './models/todo.model';
 
 const todo1 = new Todo('Vencer a Thanos.');
 const todo2 = new Todo('Salvar al mundo.');
+const todo3 = new Todo('Pedir prestado traje de Iron Man.');
 
-const estadoInicial: Todo[] = [todo1, todo2];
+const estadoInicial: Todo[] = [todo1, todo2, todo3];
 
 export function todoReducer(state = estadoInicial, action: fromTodoActions.Acciones): Todo[] {
     switch (action.type) {
